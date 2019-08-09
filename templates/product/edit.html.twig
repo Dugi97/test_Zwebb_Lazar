@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block body %}
+
+    <h1>Edit Product</h1>
+
+{#
+ {{ include('product/_form.html.twig', {'button_label': 'Update'},{'name':'submit'}) }}
+
+        {{ include('product/_delete_form.html.twig') }}
+        <a href="{{ path('product_index') }}">back to list</a>
+
+#}
+    {{ form_start(form,{'attr': {'enctype': 'multipart/form-data'}}) }}
+    {{ form_widget(form) }}
+    <label>Change image</label>
+    <input type="file" name="image" > <br>
+    <button name="update" class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <h1>Products</h1>
+
+    {% if app.user %}
+        <div class="checkbox mb-3">You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a><br>
+    {% endif %}
+    <a href="{{ path('product_new') }}">Create new product</a> <br>
+
+
+
+
+        <table class="table">
+        {% for product in products %}
+
+                    <tbody>
+                    <tr>
+                        <td> <img src="images/{{ product.picture }}"> <br></td>
+                    </tr>
+
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ product.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>About</th>
+                        <td>{{ product.about }}</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>{{ product.price }}</td>
+
+                    </tr>
+                    <tr>
+                        <td>{{ include('product/_delete_form.html.twig') }}</td>
+                    </tr>
+                    <tr>
+                        <td><a href="{{ path('product_edit', {'id': product.id}) }}"><button>edit</button></a></td>
+
+                    </tr>
+                    </tbody>
+
+
+
+
+
+        <br>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+
+        {% endblock %}
